@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video-player</title>
+    
+        <!-- <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+        <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script> -->
+        <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+        <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
+      </head>
+      
+      <body>
+        <!-- poster="https://i.pinimg.com/originals/23/40/f2/2340f2b88cde789d7a92ad5805a081df.jpg" -->
+        <video
+          id="my-video"
+          class="video-js"
+          controls
+          preload="auto"
+          width="840"
+          height="484"
+          
+          data-setup="{}"
+        >
+          <source class="active" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
+          <source src="https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4" type="video/mp4" />
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+              >supports HTML5 video</a
+            >
+          </p>
+        </video>
+      
+        <script>
+          var myvid = document.getElementById('my-video');
+
+myvid.addEventListener('ended', function(e) {//e is event
+  // get the active source and the next video source.
+  //  set it so if there's no next, it loops to the first one
+  var activesource = document.querySelector("#my-video source.active");
+  var nextsource = document.querySelector("#my-video source.active + source") || document.querySelector("#my-video source:first-child");
+  
+  // deactivate current source, and activate next one
+  activesource.className = "";
+  nextsource.className = "active";
+  
+  // update the video source and play
+  myvid.src = nextsource.src;
+  myvid.play();
+});
+        </script>
+          
+      </body>
+</html>
